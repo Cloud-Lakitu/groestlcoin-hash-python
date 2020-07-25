@@ -1,3 +1,5 @@
+#define PY_SSIZE_T_CLEAN
+
 #include <Python.h>
 
 #include "sph_groestl.h"
@@ -7,7 +9,7 @@ typedef __int32 int32_t;
 typedef unsigned __int32 uint32_t;
 #endif
 
-static void GroestlCoinHash(const char *input, int length, char *output)
+static void GroestlCoinHash(const char *input, Py_ssize_t length, char *output)
 {
     uint32_t hashA[16], hashB[16];
     
@@ -33,7 +35,7 @@ static PyObject *groestlcoin_gethash(PyObject *self, PyObject *args)
 #else
     PyStringObject *input;
 #endif
-    int length;
+    Py_ssize_t length;
     if (!PyArg_ParseTuple(args, "Si", &input, &length))
         return NULL;
     Py_INCREF(input);
