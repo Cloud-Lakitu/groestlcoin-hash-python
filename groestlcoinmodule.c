@@ -36,7 +36,7 @@ static PyObject *groestlcoin_gethash(PyObject *self, PyObject *args)
     PyStringObject *input;
 #endif
     Py_ssize_t length;
-    if (!PyArg_ParseTuple(args, "Si", &input, &length))
+    if (!PyArg_ParseTuple(args, "Sn", &input, &length))
         return NULL;
     Py_INCREF(input);
     output = PyMem_Malloc(32);
